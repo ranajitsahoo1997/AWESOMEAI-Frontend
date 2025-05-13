@@ -1,0 +1,39 @@
+.code-box{
+    background-color: transparent;
+    width: 50px!important;
+    height: 50px;
+    border: 2px solid rebeccapurple;
+    border-radius: 10px;
+    gap: 10px;
+    margin: 10px;
+    font-size: 30px;
+
+}
+.code-container{
+    height: 18vh;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.heading{
+    width: 100%;
+}
+
+.heading>h1{
+    font-weight: bold;
+    font-size: 40px!important;
+    color: rebeccapurple;
+    text-align: center;
+}
+
+.paragraph{
+    color: rebeccapurple;
+    text-align: center;
+}
+.verify-icon{
+    font-size: 200px;
+    margin-top: 20px;
+    color: rebeccapurple;
+}

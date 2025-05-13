@@ -1,0 +1,21 @@
+.drop-box-container {
+  /* background-color: green!important; */
+  border-radius: 10px;
+  width: 40vw;
+  height: 40vh;
+  cursor: pointer;
+  border: 4px dashed rebeccapurple;
+  padding: 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+
+}
+.drop-icon{
+    color: rebeccapurple;
+    font-size: 3rem;
+}

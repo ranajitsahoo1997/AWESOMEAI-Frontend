@@ -1,0 +1,222 @@
+*{
+
+    margin: 0%;
+    padding: 0%;
+    font-family: Arial, sans-serif;
+}
+.left-content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    
+}
+
+
+.welcome-text{
+    font-weight: bold;
+}
+.login-text{
+    font-size: 70px!important;
+    margin-top: 0px;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    font-weight: bold;
+    color: rebeccapurple;
+
+}
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: bisque;
+    position: relative;
+    /* overflow: hidden; */
+    overflow-x: hidden;
+}
+.login-form{
+    padding: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    z-index: 1;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    
+}
+.login-form>div{
+    margin: 30% 0%;
+    margin-bottom: 10%;
+    width: 100%;
+}
+.form{
+    width: 50%;
+    letter-spacing: 0.3px;
+    position: relative;
+}
+.email-input-box{
+    position: relative;
+}
+.mail-icon{
+    position: absolute;
+    left:-10%;
+    bottom: 10%;
+    font-size: 30px;
+    font-weight: bold;
+    color: rebeccapurple;
+}
+.password-input-box{
+    position: relative;
+}
+.pass-icon{
+    position: absolute;
+    left:-10%;
+    bottom: 10%;
+    font-size: 30px;
+    font-weight: bold;
+    color: rebeccapurple;
+}
+.input-box{
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    border:none;
+    border-bottom: 2px solid black;
+    margin-bottom: 20px;
+    font-weight: bold;
+    outline: none;
+    background: transparent;
+    padding-bottom: 0%;
+    
+}
+form>div>label{
+    font-weight: 700;
+    color: rebeccapurple;
+}
+.password-input-box{
+    position: relative;
+}
+
+.show-password1{
+    color: rebeccapurple;
+    font-size: large;
+    font-weight: bold;
+    position: absolute;
+    right: 5%;
+    top: 36%;
+}
+.show-password2{
+    color: rebeccapurple;
+    font-size: large;
+    font-weight: bold;
+    position: absolute;
+    right: 5%;
+    top: 36%;
+}
+.forgot-password{
+    display: block!important;
+    width: 100%;
+    height: 50px;
+}
+.forgot-password>a{
+    
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    font-weight: bold;
+    text-decoration: none; 
+    color: rebeccapurple;  
+}
+.login-button{
+    width: 100%;
+    height: 40px;
+    font-weight: 900!important;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: rebeccapurple;
+}
+.register-text{
+    font-weight: bold;
+    text-decoration: none;
+    color: rebeccapurple;
+}
+.box-div1{
+    position: absolute;
+    height: 30vh;
+    width: 40vw;
+    filter: blur(20px);
+    background-color: aqua!important;
+    rotate: 20deg;
+    z-index: 0;
+    top: -5%;
+    left: 0;
+}
+.box-div2{
+    position: absolute;
+    height: 60vh;
+    width: 60vw;
+    background-color: rgb(173, 192, 0)!important;
+    filter: blur(10px);
+    rotate: 165deg;
+    bottom: -30%;
+    left:-15%;
+}
+.box-div3{
+    position: absolute;
+    height: 10vh;
+    width: 20vw;
+    background-color: lightsalmon;
+    border-radius: 50%;
+    filter: blur(10px);
+    top:0%;
+    right: 0%;
+
+}
+.triangle{
+    position: absolute;
+    height:60vh;
+    width: 60vw;
+    background-color: rgb(248, 158, 188);
+    /* border-radius: 100%; */
+    filter: blur(20px);
+    rotate: 75deg;
+    bottom:-25%;
+    right: -15%;
+}
+/* .box-div5{
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    background-color: lime;
+    border-radius: 100%;
+    filter: blur(20px);
+    left:30%;
+    top:0%;
+    
+} */
+.code-box{
+    background-color: bisque;
+    width: 50px!important;
+    height: 50px;
+    border: 2px solid teal;
+    border-radius: 10px;
+    gap: 10px;
+    margin: 10px;
+    font-size: 30px;
+
+}
+.form>div>div{
+    color: rebeccapurple!important;
+    font-size: 1rem!important;
+    font-weight: bold;
+}
+

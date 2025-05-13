@@ -1,0 +1,32 @@
+.link:hover{
+    font-weight: bold;
+    font-size: 30px;
+}
+.navbar{
+    
+    height: 80px;
+    backdrop-filter: blur(25px);
+    background-color: transparent;
+    
+}
+.link{
+    text-decoration: none;
+    color: rebeccapurple;
+    margin-right: 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+.navbar-brand{
+    color: rebeccapurple;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 30px!important;
+}
+

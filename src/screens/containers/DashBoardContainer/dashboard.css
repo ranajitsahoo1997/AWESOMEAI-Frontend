@@ -1,0 +1,17 @@
+.main-container{
+    overflow: hidden;
+}
+.nav-side{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+}
+.main-content{
+    width: 100vw;
+}
+.mentor-body-content{
+    display: flex;
+    flex-direction: row;
+    
+}
