@@ -1,17 +1,144 @@
-.main-container{
-    overflow: hidden;
+.main-container {
+  overflow: hidden;
 }
-.nav-side{
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: start;
+.nav-side {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
 }
-.main-content{
-    width: 100vw;
+.main-content {
+  width: 100vw;
 }
-.mentor-body-content{
-    display: flex;
-    flex-direction: row;
-    
+.mentor-body-content {
+  display: flex;
+  flex-direction: row;
+}
+.float-button {
+  width: 120px;
+  height: 70px;
+  background-color: rgb(113, 80, 146);
+  border: none;
+  border-radius: 5%;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+}
+.float-button:hover {
+  cursor: pointer;
+  background-color: rebeccapurple;
+}
+.float-button1-position {
+  position: fixed;
+  bottom: 5%;
+  right: 3%;
+  z-index: 999;
+}
+.float-button2-position {
+  position: fixed;
+  bottom: 15%;
+  right: 3%;
+  z-index: 999;
+}
+.top-container {
+  padding: 10px 10px 10px 0px;
+  margin-left: 0px;
+  height: 70px !important;
+  margin-bottom: 10px;
+}
+.gen-btn {
+  width: 15vw !important;
+  background-color: rebeccapurple;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.gen-btn-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  height: 50px;
+}
+.search-btn-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  height: 50px;
+  border-radius: 5px;
+}
+.search-btn-container > form > input {
+  background-color: transparent;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 30vw;
+  border: 2px solid rebeccapurple;
+
+  margin-right: 10px;
+  color: rebeccapurple;
+  padding: 2px 10px;
+}
+.search-btn-container > form > button {
+  background-color: rebeccapurple;
+  color: white;
+  border: none;
+  font-weight: bold;
+  width: 50px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.res-text-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+.suggestion-list {
+  position: absolute;
+  top: 6%;
+  left: 0.9%;
+
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  border: 1px solid rebeccapurple;
+  list-style: none;
+  height: 25vh;
+  overflow-y: auto;
+  width: 30vw;
+  z-index: 999;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.suggestion-list::-webkit-scrollbar {
+  width: 5px;
+ 
+}
+
+/* Scrollbar thumb (the draggable part) */
+.suggestion-list::-webkit-scrollbar-thumb {
+  background-color: rebeccapurple;
+  border-radius: 8px;
+   padding: 10px;
+}
+
+/* Scrollbar thumb on hover */
+.suggestion-list::-webkit-scrollbar-thumb:hover {
+  background-color: purple;
+   padding: 10px;
+}
+
+/* Scrollbar track (the background area) */
+.suggestion-list::-webkit-scrollbar-track {
+  /* background: #f0f0f0; */
+  border-radius: 8px;
+   padding: 10px;
 }

@@ -28,12 +28,12 @@ function highlightText(text, highlight) {
   );
 }
 
-function QuizView({ quiz, refetchQuizzes, top, onHandleSearch }) {
+function QuizView({ quiz, refetchQuizzes, top, searchText }) {
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [searchText, setSearchText] = useState("");
+ 
   const navigate = useNavigate();
 
   console.log(quiz);
@@ -72,6 +72,7 @@ function QuizView({ quiz, refetchQuizzes, top, onHandleSearch }) {
         await refetchQuizzes();
         handleClose();
         setShow(false);
+        
         navigate("/mentor-dashboard");
       }
     } catch (error) {
@@ -79,96 +80,15 @@ function QuizView({ quiz, refetchQuizzes, top, onHandleSearch }) {
       setError("Error in deleting");
     }
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const SEARCH_QUERY = `
-      query searchQuiz($searchText: String!){
-        searchQuizByName(searchText: $searchText)
-        {
-          id
-          name
-          description
-          sourceFileUrl
-          ecryptedSrcFileUrl
-          createdAt
-        }
-      }
-    `;
-    try {
-      const all_quizzes = await Client(SEARCH_QUERY, { searchText });
-      onHandleSearch(all_quizzes.data.searchQuizByName);
-    } catch (error) {
-      console.log(`Error: ${error}`);
-    }
-  };
+ 
 
-  const [suggestions, setSuggestions] = useState([]);
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    setSearchText(value);
-
-    if (!value) {
-      setSuggestions([]);
-      return;
-    }
-
-    // Filter quiz names from props or global quiz list
-    const filtered = top?.filter(
-      (quiz) =>
-        quiz.name.toLowerCase().includes(value.toLowerCase()) |
-        quiz.description.toLowerCase().includes(value.toLowerCase())
-    );
-    setSuggestions(filtered || []);
-  };
+  
 
   return (
     <>
       {quiz ? (
-        <div className="quiz_view">
-          <div className="search-bar">
-            <form onSubmit={handleSubmit}>
-              <input
-                type="search"
-                placeholder="Search here"
-                onChange={handleInputChange}
-                value={searchText}
-              />
-              <button type="submit">
-                <IoSearch />
-              </button>
-              {suggestions.length > 0 && (
-                <ul
-                  style={{
-                    position: "absolute",
-                    top: "6%",
-                    left: "30%",
-                    right: 0,
-                    background: "white",
-                    border: "1px solid #ccc",
-                    listStyle: "none",
-                    height: "150px",
-                    overflowY: "auto",
-                    width: "30vw",
-                    zIndex: 999,
-                    fontWeight: "bold"
-                  }}
-                >
-                  {suggestions.map((s, index) => (
-                    <li
-                      key={index}
-                      style={{ padding: "8px", cursor: "pointer" }}
-                      onClick={() => {
-                        setSearchText(s.name);
-                        setSuggestions([]);
-                      }}
-                    >
-                      {s.name}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </form>
-          </div>
+        <div className="quiz-view-container">
+          
           <div className="row ">
             <div className="col-md-7 ">
               <div className="quiz_name">

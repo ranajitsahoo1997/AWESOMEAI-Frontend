@@ -1,9 +1,8 @@
 .resource-container {
-  width: 180px;
+  width: 15%;
   height: 90vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  
 }
 .resource-container::-webkit-scrollbar {
   width: 8px;
@@ -26,9 +25,6 @@
   border-radius: 10px;
 }
 
-
-
-
 .resources {
   display: flex;
   flex-direction: column;
@@ -39,34 +35,49 @@
 
 .resources > .resource {
   flex: 0 0 auto; /* Prevents shrinking and wraps child at natural width */
-  width: 100px; /* or any fixed width */
-  height: 3vh; /* optional */
-  background: gainsboro;
- 
+  width: 100%; /* or any fixed width */
+  height: 6vh; /* optional */
+  background: rgb(113, 80, 146);
+  color: white;
   /* padding: 10px; */
-  border-radius: 1px;
+  border-radius: 5px;
   box-sizing: content-box;
   cursor: pointer;
-  display: grid;
-  place-items: center;
   font-weight: 400;
   transition: background-color 0.3s ease, color 0.3s ease, width 0.4s ease,
-    height 0.4s ease, font-weight 0.3s ease ,border 0.2s ease;
+    height 0.4s ease, font-weight 0.3s ease, border 0.2s ease;
+}
+#resource-item-name {
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding: 0px 10px;
+}
+#resource-item-name > div {
+  width: 100%;
+  /* height: 6vh; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .resource:hover {
   background-color: rebeccapurple;
   color: white;
-  font-weight: 700;
-  width: 130px;
-  height: 4.5vh;
+  font-weight: bold;
   z-index: 9;
-  border: 1px solid black;
 }
 .quiz_view {
-  width: 80%!important;
+  width: 85% !important;
   height: auto;
-  background-color: bisque;
   position: relative;
+ 
+}
+.quiz-view-container{
+ background-color: thistle;
+ border-radius: 5px;
+ margin-left: 5px!important;
 }
 .quiz_name {
   font-weight: bold;
@@ -101,7 +112,6 @@
   font-weight: normal;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   /* height: 150px; */
- 
 }
 .action-container {
   color: rebeccapurple;
@@ -115,7 +125,7 @@
 }
 .quiz-content {
   /* width: 100vw; */
-  height: 750px;
+  height: 75vh;
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -154,23 +164,23 @@
   cursor: pointer;
   background-color: gainsboro;
 }
-.search-bar{
+.search-bar {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-.search-bar>form>input{
+.search-bar > form > input {
   background-color: floralwhite;
   border-radius: 5px;
   width: 30vw;
-  height: 40px;
+  height: 30px;
   border: 2px solid rebeccapurple;
   padding-left: 20px;
   color: rebeccapurple;
   font-weight: bold;
 }
-.search-bar>form>button{
+.search-bar > form > button {
   background-color: transparent;
   font-size: 30px;
   border: none;
@@ -178,6 +188,45 @@
   font-weight: bold;
   height: 30px;
 }
-.btn-text:hover{
+.btn-text:hover {
   font-weight: bold;
+}
+.resource-form {
+  z-index: 999;
+  width: 60vw;
+  backdrop-filter: blur(50px);
+}
+.resource-text {
+
+  color: rebeccapurple;
+  font-size: 70px;
+  text-align: center;
+}
+.login-container1 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  height: 92vh;
+  overflow: hidden;
+
+}
+.btn-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.resource-btn{
+  width: 10vw;
+  background-color: rebeccapurple;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 10px;
+  
+}
+.input-box{
+  border: 2px solid rebeccapurple;
+  border-radius: 10px;
 }

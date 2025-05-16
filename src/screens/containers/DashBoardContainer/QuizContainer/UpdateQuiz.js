@@ -73,6 +73,7 @@ function UpdateQuiz() {
         setLoading(true);
         const { data } = await Client(QUIZ_VIEW_QUERY, { id });
         console.log(data);
+        setError("")
         setQuiz(data.getQuizById);
         SetTitle(quiz.name);
         setDesc(quiz.description);

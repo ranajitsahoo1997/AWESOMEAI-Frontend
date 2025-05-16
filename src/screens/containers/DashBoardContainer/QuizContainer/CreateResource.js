@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { Client } from "../../../../Client/GraphQLClient";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../userContainerUtils/Navbar/navbar";
+import DragAndDrop from "../mentorUtils/dropbox/Dropbox";
 // import { Client } from "../../../../graphqlClient";
-function CreateQuiz() {
+function CreateResource() {
   const [title, SetTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [file, setFile] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleFileUpload = (file) => {
     console.log("Received in parent:", file);
-    setUploadedFile(file);
+    // setUploadedFile(file);
+    setFile(file)
   };
   const handleFileChange = (e) => {
     const files = e.target.files[0]; // Get the first selected file
@@ -91,11 +94,11 @@ function CreateQuiz() {
     try {
       console.log("user-->", file);
       setLoading(true);
-    //   const response = await fetch("http://localhost:8000/graphql/", {
-    //     method: "POST",
-    //     body: formData,
-    //   });
-    const response = await Client(CREATE_QUIZ_MUTATION, {
+      //   const response = await fetch("http://localhost:8000/graphql/", {
+      //     method: "POST",
+      //     body: formData,
+      //   });
+      const response = await Client(CREATE_QUIZ_MUTATION, {
         title,
         desc,
         file,
@@ -103,11 +106,11 @@ function CreateQuiz() {
       });
 
       console.log(response);
-      if(response.data.createQuiz.quiz.sourceFile!==null){
-        console.log("entered",response.data.createQuiz.quiz)
-        navigate("/mentor-dashboard")
-      }else{
-        console.log("entered",response.data.createQuiz.quiz.sourceFile)
+      if (response.data.createQuiz.quiz.sourceFile !== null) {
+        console.log("entered", response.data.createQuiz.quiz);
+        navigate("/mentor-dashboard");
+      } else {
+        console.log("entered", response.data.createQuiz.quiz.sourceFile);
       }
     } catch (error) {
       setError("Quiz creation Failed!! try again");
@@ -119,12 +122,14 @@ function CreateQuiz() {
 
   return (
     <div className="quiz-container">
-      <div className="container ">
-        <h4>Create Quiz</h4>
+      <Navbar />
+      <div className="login-container1 ">
+        
         {error && <p>Error: {error}</p>}
-        <div>
-          <form onSubmit={handleCreateQuiz}>
-            <div className="row">
+        <div className="resource-form">
+          <h1 className="resource-text">Create Resource</h1>
+          <form className="" onSubmit={handleCreateQuiz}>
+            <div className="">
               <label>Title</label>
 
               <input
@@ -142,6 +147,7 @@ function CreateQuiz() {
               <textarea
                 type="text"
                 className="input-box"
+                style={{width: "98%",marginLeft:"10px",height: "150px"}}
                 rows={3}
                 placeholder="Enter description"
                 onChange={(e) => setDesc(e.target.value)}
@@ -149,17 +155,25 @@ function CreateQuiz() {
                 required
               />
             </div>
-            {/* <DragAndDrop onFileUpload={handleFileUpload} /> */}
-            <input type="file" onChange={handleFileChange} readOnly />
-            <button type="submit" className="btn btn-info text-center">
+            <DragAndDrop onFileUpload={handleFileUpload} required/>
+            {/* <input type="file" onChange={handleFileChange} readOnly /> */}
+            <div className="btn-container">
+              <button type="submit" className="resource-btn text-center">
               Create
             </button>
+            </div>
+            
             {/* <button type="reset" className="btn btn-info text-center">Reset</button> */}
           </form>
         </div>
+        <div className="box-div1"></div>
+        <div className="box-div2"></div>
+        <div className="box-div3"></div>
+        <div className="triangle"></div>
+        <div className="box-div5"></div>
       </div>
     </div>
   );
 }
 
-export default CreateQuiz;
+export default CreateResource;

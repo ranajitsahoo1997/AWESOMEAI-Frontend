@@ -43,6 +43,7 @@ function Login() {
       {
         success
         token
+        refreshToken
         errors
       }
     }
@@ -67,6 +68,8 @@ function Login() {
       }
       console.log("Login response:", response);
       const token = response.data.tokenAuth.token;
+      const refreshToken = response.data.tokenAuth.refreshToken;
+      localStorage.setItem("refreshToken",refreshToken)
       localStorage.setItem("token", token);
       console.log(token);
       

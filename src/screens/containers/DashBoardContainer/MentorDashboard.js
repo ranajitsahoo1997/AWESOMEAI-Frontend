@@ -5,19 +5,42 @@ import QuizList from "./QuizContainer/Quizzes";
 import QuizView from "./QuizContainer/QuizView";
 import { Client } from "../../../Client/GraphQLClient";
 import Sidebar from "../userContainerUtils/Sidebar/Sidebar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import QuestionItem from "../QuestionContainer/QuestionItem";
+import QuestionView from "../QuestionContainer/QuestionsView";
+import { IoSearch } from "react-icons/io5";
 
-function MentorDashboard({children}) {
+function MentorDashboard() {
   console.log("entered to metor");
-  
-  const user = JSON.parse(localStorage.getItem("currentUser"));
+  const [error, setError] = useState("");
+  const [showQuest, setShowQuest] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [quizzes, setQuizzes] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [quiz, setQuiz] = useState(null);
-  const [top,setTop] = useState(null)
-  const [qLen,setQLen] = useState(0)
-  const [searches,setSearches] = useState([])
-  const loc = useLocation()
+  const [top, setTop] = useState(null);
+  const [qLen, setQLen] = useState(0);
+  const [searches, setSearches] = useState([]);
+  const loc = useLocation();
+  const navigate = useNavigate();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const handleQuiz = async (id) => {
+    setShowQuest(false);
     const FETCH_QUIZ_MUTATION = `
         query fetchQuiz($id: ID!)
         {
@@ -33,11 +56,10 @@ function MentorDashboard({children}) {
     `;
 
     try {
-      const response = await Client(FETCH_QUIZ_MUTATION,{id})
-      setQuiz(response?.data?.getQuizById)
+      const response = await Client(FETCH_QUIZ_MUTATION, { id });
+      setQuiz(response?.data?.getQuizById);
     } catch (error) {
       console.log(`error: ${error}`);
-      
     }
   };
   const fetchQuizzes = async () => {
@@ -55,36 +77,212 @@ function MentorDashboard({children}) {
     `;
     try {
       const response = await Client(QUIZZES_QUERY);
-      const quiz_list = response.data.allQuizzes
+      const quiz_list = response.data.allQuizzes;
       setQuizzes(quiz_list);
-      setTop(quiz_list[0])
-      setQLen(quiz_list.length)
+      setTop(quiz_list[0]);
+      setQLen(quiz_list.length);
     } catch (error) {
       console.error("Failed to fetch quizzes:", error);
     }
   };
- const handleSearch = (reses)=>{
-  setSearches(reses)
-  
- }
+  const handleSearch = (reses) => {
+    setSearches(reses);
+  };
+  const handleCreateReourceClick = () => {
+    console.log("entered");
+
+    navigate("/create-resource");
+  };
+  const handleCreateQuestionClick = () => {
+    navigate("/create-question");
+  };
+
+  const handleGenerateQuestion = async (resID) => {
+    console.log("hello", resID);
+    setShowQuest(true);
+    setError("");
+    setLoading(true);
+    const CREATE_QUESTION_QUERY = `
+      query CreateQuestion($resId: ID!)
+      {
+        createQuestionWithResource(resId: $resId)
+        {
+          id
+          text
+          level
+          topic
+          mark
+          quiz{
+                id
+                name
+              }
+        }
+      }
+    `;
+    try {
+      setError("");
+      setLoading(true);
+
+      const response = await Client(CREATE_QUESTION_QUERY, {
+        resId: resID,
+      });
+      const questionData = response.data.createQuestionWithResource;
+      setQuestions(questionData);
+    } catch (error) {
+      setError("Error in Creating question");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    
     fetchQuizzes();
-   
   }, []);
-  
-  
+
+  const handleSubmit = async (e) => {
+    console.log(searchText);
+    
+      e.preventDefault();
+      const SEARCH_QUERY = `
+        query searchQuiz($searchText: String!){
+          searchQuizByName(searchText: $searchText)
+          {
+            id
+            name
+            description
+            sourceFileUrl
+            ecryptedSrcFileUrl
+            createdAt
+          }
+        }
+      `;
+      try {
+        const all_quizzes = await Client(SEARCH_QUERY, { searchText });
+        setSearches(all_quizzes.data.searchQuizByName);
+      } catch (error) {
+        console.log(`Error: ${error}`);
+      }
+    };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setSearchText(value);
+
+    if (!value) {
+      setSuggestions([]);
+      return;
+    }
+    if(value===""){
+      fetchQuizzes();
+    }
+
+
+    
+
+    // Filter quiz names from props or global quiz list
+    const filtered = quizzes.filter(
+      (quiz) =>
+        quiz.name.toLowerCase().includes(value.toLowerCase()) |
+        quiz.description.toLowerCase().includes(value.toLowerCase())
+    );
+    setSuggestions(filtered || []);
+  };
+
   return (
     <div className="main-container">
       <div className="nav-side">
         <div className="main-content">
-          <Navbar username={user?.username} />
+          <Navbar />
           <div className="mentor-body-content">
-            {searches.length>0?<Sidebar quizzes={searches } onQuiz={handleQuiz} />:<Sidebar quizzes={quizzes } onQuiz={handleQuiz} />}
-            
-            {children?children:<QuizView quiz={quiz||top} top={quizzes} refetchQuizzes={fetchQuizzes} onHandleSearch={handleSearch}/>}
-            
+            {/* {searches.length>0?<Sidebar quizzes={searches } onQuiz={handleQuiz} />:<Sidebar quizzes={quizzes } onQuiz={handleQuiz} />} */}
+            {searches.length > 0 ? (
+              <QuizList quizzes={searches} onQuiz={handleQuiz} />
+            ) : (
+              <QuizList quizzes={quizzes} onQuiz={handleQuiz} />
+            )}
+            <div className="quiz_view">
+              <div className="row top-container m-0 p-0">
+                <div className="col-md-6 search-btn-container">
+                  
+                    <form onSubmit={handleSubmit}>
+                      <input
+                        type="search"
+                        placeholder="Search Resource here..."
+                        onChange={handleInputChange}
+                        value={searchText}
+                        on
+                      />
+                      <button type="submit">
+                        <IoSearch /> 
+                      </button>
+                      {suggestions.length > 0 && (
+                        <ul className="suggestion-list"
+                         
+                        >
+                          {suggestions.map((s, index) => (
+                            <li
+                              key={index}
+                              style={{ padding: "8px", cursor: "pointer" }}
+                              onClick={() => {
+                                setSearchText(s.name);
+                                setSuggestions([]);
+                              }}
+                            >
+                              {s.name}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </form>
+                 
+                </div>
+                <div className="col-md-6 ">
+                  <div className="row">
+                    <div className="col-md-6 res-text-container">
+                      <h5><b style={{color: "rebeccapurple"}}>Resource: </b>{quiz?.name || top?.name}</h5>
+                    </div>
+                    <div className="col-md-6 gen-btn-container">
+                      <div className="text-center">
+                        <div
+                          className="gen-btn"
+                          onClick={() =>
+                            handleGenerateQuestion(quiz?.id || top?.id)
+                          }
+                        >
+                          {loading
+                            ? "Generating..."
+                            : "Generate Questions"}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              {showQuest ? (
+                <div>
+                  {loading && (
+                    <p>Loading... it will take some time to generate</p>
+                  )}
+                  {error && <p>{error}</p>}
+                  {questions && <QuestionView questions={questions} />}
+                </div>
+              ) : (
+                <QuizView
+                  quiz={quiz || top}
+                  top={quizzes}
+                  refetchQuizzes={fetchQuizzes}
+                  searchText={searchText}
+                />
+              )}
+            </div>
+
+            <button
+              className="float-button float-button1-position"
+              onClick={handleCreateReourceClick}
+            >
+              Create Resource
+            </button>
             
           </div>
         </div>

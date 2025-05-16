@@ -9,7 +9,7 @@ function QuizItem({ quiz, onQuiz }) {
     <div className="resource">
       <div >
         
-        <p onClick={() => handleClick(quiz?.id)}><FileText className="mx-3"size={16}/>{quiz?.name}</p>
+        <div id="resource-item-name" onClick={() => handleClick(quiz?.id)}><FileText size={18}/><div>{quiz?.name}</div></div>
       </div>
     </div>
   );

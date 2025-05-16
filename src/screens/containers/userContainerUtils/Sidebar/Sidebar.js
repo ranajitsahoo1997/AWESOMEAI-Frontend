@@ -17,10 +17,10 @@ function Sidebar({ quizzes, onQuiz }) {
 
   console.log(quizzes);
   const handleCreateresource = () => {
-    navigate("/mentor-dashboard/create-resource");
+    navigate("/create-resource");
   };
   const handleCreateQuestion = () => {
-    navigate("/mentor-dashboard/Create-Question");
+    navigate("/Create-Question");
   };
 
   return (

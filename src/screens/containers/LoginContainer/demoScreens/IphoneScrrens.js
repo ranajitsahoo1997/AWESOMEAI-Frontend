@@ -67,18 +67,24 @@ const IphoneLoginScreen = () => {
             style={styles.smallbrandName}
           >
             {/* {big?name:appName} */}
-            <marquee direction="left" >welcome To Awesome AI</marquee>
-            <marquee direction="right">welcome To Awesome AI</marquee>
-            <marquee direction="left">welcome To Awesome AI</marquee>
-            <marquee direction="right">welcome To Awesome AI</marquee>
-            <marquee direction="uleft" >welcome To Awesome AI</marquee>
-            <marquee direction="right">welcome To Awesome AI</marquee>
-            <marquee direction="left">welcome To Awesome AI</marquee>
-            <marquee direction="right">welcome To Awesome AI</marquee>
-            <marquee direction="left">welcome To Awesome AI</marquee>
-            <marquee direction="right">welcome To Awesome AI</marquee>
-            <marquee direction="left">welcome To Awesome AI</marquee>
-            <marquee direction="right">welcome To Awesome AI</marquee>
+            <div direction="left" >Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="right">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="left">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="right">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="uleft" >Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="right">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="left">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="right">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="left">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="right">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="left">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="right">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="left">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="right">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="left">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="right">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="left">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
+            <div direction="right">Welcome To AwesomeAI  Welcome To AwesomeAI  Welcome To AwesomeAI </div>
           </div>
 
           <div style={styles.formGroup}></div>

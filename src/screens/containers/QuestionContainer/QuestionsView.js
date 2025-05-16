@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import QuestionItem from './QuestionItem';
 
-function QuestionView() {
-  const location = useLocation();
-  const questions = location.state?.questions;
+function QuestionView({questions}) {
+  // const location = useLocation();
+  // const questions = location.state?.questions;
 
   if (!questions) return <p>No question data received.</p>;
 
@@ -11,7 +11,7 @@ function QuestionView() {
     <div>
       <h2 className='text-center'>Question Details</h2>
       {
-        questions.map((question,index)=>(
+        questions?.map((question,index)=>(
             // <div key={question.id}>
             //     <p><strong>ID:</strong> {question.id}</p>
             // <p><strong>Text:</strong> {question.text}</p>

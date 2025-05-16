@@ -25,4 +25,4 @@ function QuestionItem({question,index}) {
   )
 }
 
-export default QuestionItem
+export default QuestionItem;
