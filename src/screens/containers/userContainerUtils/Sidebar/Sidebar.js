@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./sidebar.css";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import { ChevronDown, ChevronRight, Folder, FileText } from "lucide-react";
-import QuizItem from "../../DashBoardContainer/QuizContainer/QuizItem";
+import QuizItem from "../../DashBoardContainer/ResourceContainer/ResourceItem";
 import { useNavigate } from "react-router-dom";
 
 function Sidebar({ quizzes, onQuiz }) {

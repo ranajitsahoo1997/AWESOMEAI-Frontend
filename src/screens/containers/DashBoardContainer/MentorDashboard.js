@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../userContainerUtils/Navbar/navbar";
 import "./dashboard.css";
-import QuizList from "./QuizContainer/Quizzes";
-import QuizView from "./QuizContainer/QuizView";
+import QuizList from "./ResourceContainer/Resources";
+import QuizView from "./ResourceContainer/ResourceView";
 import { Client } from "../../../Client/GraphQLClient";
 import Sidebar from "../userContainerUtils/Sidebar/Sidebar";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -31,7 +31,10 @@ function MentorDashboard() {
 
 
 
-
+  const handleResourceIcon = (id)=>{
+    console.log("respurce_id",id)
+    setShowQuest(true);
+  }
 
 
 
@@ -42,9 +45,9 @@ function MentorDashboard() {
   const handleQuiz = async (id) => {
     setShowQuest(false);
     const FETCH_QUIZ_MUTATION = `
-        query fetchQuiz($id: ID!)
+        query fetchResource($id: ID!)
         {
-          getQuizById(id:$id){
+          getResourceById(id:$id){
             id
             name
             description
@@ -57,7 +60,7 @@ function MentorDashboard() {
 
     try {
       const response = await Client(FETCH_QUIZ_MUTATION, { id });
-      setQuiz(response?.data?.getQuizById);
+      setQuiz(response?.data?.getResourceById);
     } catch (error) {
       console.log(`error: ${error}`);
     }
@@ -65,7 +68,7 @@ function MentorDashboard() {
   const fetchQuizzes = async () => {
     const QUIZZES_QUERY = `
       query {
-        allQuizzes {
+        allResources {
           id
           name
           description
@@ -77,7 +80,7 @@ function MentorDashboard() {
     `;
     try {
       const response = await Client(QUIZZES_QUERY);
-      const quiz_list = response.data.allQuizzes;
+      const quiz_list = response.data.allResources;
       setQuizzes(quiz_list);
       setTop(quiz_list[0]);
       setQLen(quiz_list.length);
@@ -99,7 +102,7 @@ function MentorDashboard() {
 
   const handleGenerateQuestion = async (resID) => {
     console.log("hello", resID);
-    setShowQuest(true);
+    
     setError("");
     setLoading(true);
     const CREATE_QUESTION_QUERY = `
@@ -108,11 +111,11 @@ function MentorDashboard() {
         createQuestionWithResource(resId: $resId)
         {
           id
-          text
+          question
           level
           topic
           mark
-          quiz{
+          resource{
                 id
                 name
               }
@@ -144,8 +147,8 @@ function MentorDashboard() {
     
       e.preventDefault();
       const SEARCH_QUERY = `
-        query searchQuiz($searchText: String!){
-          searchQuizByName(searchText: $searchText)
+        query searchResources($searchText: String!){
+          searchResourceByName(searchText: $searchText)
           {
             id
             name
@@ -158,7 +161,7 @@ function MentorDashboard() {
       `;
       try {
         const all_quizzes = await Client(SEARCH_QUERY, { searchText });
-        setSearches(all_quizzes.data.searchQuizByName);
+        setSearches(all_quizzes.data.searchResourceByName);
       } catch (error) {
         console.log(`Error: ${error}`);
       }
@@ -196,9 +199,9 @@ function MentorDashboard() {
           <div className="mentor-body-content">
             {/* {searches.length>0?<Sidebar quizzes={searches } onQuiz={handleQuiz} />:<Sidebar quizzes={quizzes } onQuiz={handleQuiz} />} */}
             {searches.length > 0 ? (
-              <QuizList quizzes={searches} onQuiz={handleQuiz} />
+              <QuizList quizzes={searches} onQuiz={handleQuiz} onResourceIcon={handleResourceIcon}/>
             ) : (
-              <QuizList quizzes={quizzes} onQuiz={handleQuiz} />
+              <QuizList quizzes={quizzes} onQuiz={handleQuiz} onResourceIcon={handleResourceIcon}/>
             )}
             <div className="quiz_view">
               <div className="row top-container m-0 p-0">

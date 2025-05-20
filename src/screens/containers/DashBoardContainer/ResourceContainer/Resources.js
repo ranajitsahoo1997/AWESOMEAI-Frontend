@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Client } from "../../../../Client/GraphQLClient";
-import QuizItem from "./QuizItem";
+import QuizItem from "./ResourceItem";
 import "./quiz.css";
 // Your GraphQL request function
 
-const QuizList = ({ onQuiz, onFirstQuiz,quizzes}) => {
+const QuizList = ({ onQuiz, onFirstQuiz,quizzes,onResourceIcon}) => {
   // const [quizzes, setQuizzes] = useState([]);
   // const [qLen,setQLen] = useState(0)
   // const [quiz, setQuiz] = useState(null);
@@ -49,7 +49,7 @@ const QuizList = ({ onQuiz, onFirstQuiz,quizzes}) => {
 
         {quizzes ? (
           quizzes.map((quiz) => (
-            <QuizItem key={quiz.id} quiz={quiz} onQuiz={onQuiz} />
+            <QuizItem key={quiz.id} quiz={quiz} onQuiz={onQuiz} onResourceIcon={onResourceIcon} />
           ))
         ) : (
           <p>Please Add Resouce</p>

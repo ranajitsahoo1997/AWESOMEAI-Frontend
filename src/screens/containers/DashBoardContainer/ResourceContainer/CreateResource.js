@@ -75,7 +75,7 @@ function CreateResource() {
                                 $file: Upload!
                                 $id: ID!
                             ) {
-                                createQuiz(
+                                createResource(
                                 name: $title
                                 description: $desc
                                 sourceFile: $file
@@ -83,7 +83,7 @@ function CreateResource() {
                                 ) {
                                 success
                                 errors
-                                quiz {
+                                resource {
                                     name
                                     sourceFile
                                     ecryptedSrcFile
@@ -106,11 +106,11 @@ function CreateResource() {
       });
 
       console.log(response);
-      if (response.data.createQuiz.quiz.sourceFile !== null) {
-        console.log("entered", response.data.createQuiz.quiz);
+      if (response.data.createResource.resource.sourceFile !== null) {
+        console.log("entered", response.data.createResource.resource);
         navigate("/mentor-dashboard");
       } else {
-        console.log("entered", response.data.createQuiz.quiz.sourceFile);
+        console.log("entered", response.data.createResource.resource.sourceFile);
       }
     } catch (error) {
       setError("Quiz creation Failed!! try again");

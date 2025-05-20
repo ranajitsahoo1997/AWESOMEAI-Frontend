@@ -1,6 +1,8 @@
 import React from 'react'
 
 function QuestionItem({question,index}) {
+    console.log(question);
+    
   return (
     <div className='container'>
         <div className='question-container'>
@@ -9,7 +11,7 @@ function QuestionItem({question,index}) {
                     <p><b>Q{index}.</b></p>
                 </div>
                 <div className='col-md-11'>
-                    <p><b><i>{question.text}</i></b></p>
+                    <p><b><i>{question.question}</i></b></p>
                 </div>
                 <div className='col-md-12'>
                     <div className='question-weight'>

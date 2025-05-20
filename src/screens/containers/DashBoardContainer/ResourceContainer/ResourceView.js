@@ -55,9 +55,9 @@ function QuizView({ quiz, refetchQuizzes, top, searchText }) {
     setError("");
     setLoading(true);
     const DELETE_MUTATION = `
-        mutation DeleteQuiz($id: ID!)
+        mutation DeleteResource($id: ID!)
         {
-          deleteQuiz(id: $id){
+          deleteResource(id: $id){
             success
             errors
 
@@ -66,8 +66,8 @@ function QuizView({ quiz, refetchQuizzes, top, searchText }) {
     `;
     try {
       const { data } = await Client(DELETE_MUTATION, { id });
-      console.log(data.deleteQuiz.success);
-      if (data?.deleteQuiz?.success) {
+      console.log(id);
+      if (data?.deleteResource?.success) {
         console.log("deleted");
         await refetchQuizzes();
         handleClose();

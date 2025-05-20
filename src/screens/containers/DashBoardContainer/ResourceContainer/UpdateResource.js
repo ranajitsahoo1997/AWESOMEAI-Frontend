@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Client } from "../../../../Client/GraphQLClient";
 
-function UpdateQuiz() {
+function UpdateResource() {
   const { id } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [title, SetTitle] = useState("");
@@ -13,9 +13,9 @@ function UpdateQuiz() {
   const navigate = useNavigate();
 
   const QUIZ_VIEW_QUERY = `
-    query QuizView($id: ID!)
+    query ResourceView($id: ID!)
     {
-      getQuizById(id: $id){
+      getResourceById(id: $id){
         id
         name
         description
@@ -33,9 +33,9 @@ function UpdateQuiz() {
     setLoading(false);
 
     const UPDATE_QUIZ_MUTATION = `
-        mutation UpdateQuiz($title: String!,$desc: String!,$file: Upload!,$id: ID!) 
+        mutation UpdateResource($title: String!,$desc: String!,$file: Upload!,$id: ID!) 
         {
-            updateQuiz(name: $title,description: $desc,sourceFile: $file,id: $id) 
+            updateResource(name: $title,description: $desc,sourceFile: $file,id: $id) 
             {
                 success
                 errors
@@ -53,12 +53,12 @@ function UpdateQuiz() {
       });
 
       console.log(response);
-      if (response.data.updateQuiz.success) {
+      if (response.data.updateResource.success) {
         navigate("/mentor-dashboard")
       }
      
     } catch (error) {
-      setError("Quiz updation Failed!! try again");
+      setError("Resource updation Failed!! try again");
       setLoading(false);
     } finally {
       setLoading(false);
@@ -74,7 +74,7 @@ function UpdateQuiz() {
         const { data } = await Client(QUIZ_VIEW_QUERY, { id });
         console.log(data);
         setError("")
-        setQuiz(data.getQuizById);
+        setQuiz(data.getResourceById);
         SetTitle(quiz.name);
         setDesc(quiz.description);
         setFile(quiz.sourceFile);
@@ -137,4 +137,4 @@ function UpdateQuiz() {
   );
 }
 
-export default UpdateQuiz;
+export default UpdateResource;

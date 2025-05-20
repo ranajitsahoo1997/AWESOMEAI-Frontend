@@ -1,5 +1,5 @@
 .main-container {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .nav-side {
   display: flex;
@@ -13,6 +13,7 @@
 .mentor-body-content {
   display: flex;
   flex-direction: row;
+  height: 90vh;
 }
 .float-button {
   width: 120px;

@@ -10,10 +10,12 @@ import SplashScreen from "./screens/containers/showSplashScreenContainer/splashS
 import LoginHome from "./screens/containers/LoginContainer/loginHome";
 import MentorDashboard from "./screens/containers/DashBoardContainer/MentorDashboard";
 import StudentDashboard from "./screens/containers/DashBoardContainer/StudentDashboard";
-import UpdateQuiz from "./screens/containers/DashBoardContainer/QuizContainer/UpdateQuiz";
 import CreateQuestion from "./screens/containers/QuestionContainer/CreateQuestion";
 import QuestionsView from "./screens/containers/QuestionContainer/QuestionsView";
-import CreateResource from "./screens/containers/DashBoardContainer/QuizContainer/CreateResource";
+import UpdateQuiz from "./screens/containers/DashBoardContainer/ResourceContainer/UpdateResource";
+import UpdateResource from "./screens/containers/DashBoardContainer/ResourceContainer/UpdateResource";
+import CreateResource from "./screens/containers/DashBoardContainer/ResourceContainer/CreateResource";
+
 
 function App() {
   const [showSplash, setShowSplash] = useState(false);
@@ -90,7 +92,7 @@ function App() {
         <Route exact path="/mentor-dashboard" element={<MentorDashboard />} >
         
         </Route>
-        <Route path="/update-resource/:id" element={<UpdateQuiz />} />
+        <Route path="/update-resource/:id" element={<UpdateResource />} />
         <Route
           exact
           path="/create-resource"

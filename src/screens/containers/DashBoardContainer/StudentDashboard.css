@@ -1,0 +1,179 @@
+.student-dashboard{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(180deg, #F0F4FF 0%, #E6E9FF 100%);
+    overflow: hidden;
+   
+}
+.box-1{
+    position: absolute;
+    bottom:-40%;
+    left:-10%;
+    width: 50vw;
+    height: 100vh;
+    border-radius: 50%;
+    background-color: rgb(201, 201, 250);
+    z-index: 0!important;
+}
+.box-2{
+    position: absolute;
+    top:-30%;
+    right:40%;
+    width: 30vw;
+    height: 60vh;
+    border-radius: 50%;
+    border: 40px solid rgb(165, 165, 252);
+    z-index: 0!important;
+}
+
+.box-3{
+    position: absolute;
+    top:30%;
+    left:5%;
+    width: 10vw;
+    height: 20vh;
+    border-radius: 50%;
+    border: 40px solid rgb(54, 199, 224);
+    z-index: 0!important;
+}
+
+.box-4{
+    position: absolute;
+    bottom:30%;
+    right:5%;
+    width: 20vw;
+    height: 40vh;
+    border-radius: 50%;
+    border: 40px solid rgb(165, 165, 252);
+    z-index: 0!important;
+  
+}
+
+.dashboard-container{
+    margin: auto;
+    margin-top: 2.5%;
+    width: 85vw;
+    height: 90vh;
+    overflow: hidden;
+    background-color: transparent;
+    border-radius: 10px;
+    backdrop-filter: blur(30px);
+    border: 1px solid lightseagreen;
+    z-index: 10!important;
+    position: relative;
+    box-shadow: 10px 10px 50px rgb(161, 161, 161);
+}
+.dashboard-header{
+    height: 50px;
+    padding: 10px 5px 10px 15px!important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+.dashboard-body{
+    height: 94%;
+    width: 100%;
+    overflow: hidden;
+
+}
+.pending-resource{
+    width: 100%;
+    height: 85vh;
+}
+.pending-box1{
+    width: 90%;
+    height: 40vh;
+    margin: 10px 10px 10px 20px!important;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+
+.pending-box2{
+    width: 90%;
+    height: 40vh;
+    margin: 10px 10px 10px 20px!important;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+.attended-box-score-box{
+    width: 100%;
+    height: 85vh;
+
+}
+.attended-box{
+    width: 100%;
+    height: 25vh;
+}
+.attended-box-content{
+   width: 95%;
+    height: 20vh; 
+    margin: 10px 10px 10px 0px!important;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+.score-box-content{
+   width: 100%;
+    height: 25vh;
+}
+.score-box{
+    width: 99%;
+    height: 20vh;
+    margin: 10px 5px 10px 5px!important;
+    border: 1px solid black;
+    border-radius: 7px;
+
+}
+.connected-mentors{
+    width: 100%;
+    height: 15vh;
+}
+.mentors-box{
+    width: 99%;
+    height: 12vh;
+    margin: 10px 5px 10px 5px!important;
+    border: 1px solid black;
+    border-radius: 7px;
+    
+}
+.bottom-box{
+    width: 100%;
+    height: 45vh;
+
+}
+.suggestion-box{
+    width: 100%;
+    height: 42vh;
+    
+}
+.top-resource{
+   width: 100%;
+    height: 42vh;
+     
+}
+.improvment-resource{
+    width: 100%;
+    height: 40vh; 
+}
+.suggestion-box-content{
+    width: 95%;
+    height: 40vh;
+    margin: 20px 10px 10px 0px!important;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+.top-resource-content{
+    width: 95%;
+    height: 40vh;
+    margin: 20px 10px 10px 0px!important;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+.improvment-resource-content{
+   width: 100%;
+    height: 40vh;
+    margin: 20px 0px!important;
+    border: 1px solid black;
+    border-radius: 7px; 
+}
