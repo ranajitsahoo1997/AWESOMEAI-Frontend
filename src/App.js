@@ -15,6 +15,7 @@ import QuestionsView from "./screens/containers/QuestionContainer/QuestionsView"
 import UpdateQuiz from "./screens/containers/DashBoardContainer/ResourceContainer/UpdateResource";
 import UpdateResource from "./screens/containers/DashBoardContainer/ResourceContainer/UpdateResource";
 import CreateResource from "./screens/containers/DashBoardContainer/ResourceContainer/CreateResource";
+import MyResourceView from "./screens/containers/MyResourceContainer/MyResourceView";
 
 
 function App() {
@@ -107,6 +108,7 @@ function App() {
         />
 
         <Route exact path="/questions" element={<QuestionsView />} />
+        <Route exact path="/resourceView" element={<MyResourceView/>}/>
       </Routes>
     </Router>
   );
