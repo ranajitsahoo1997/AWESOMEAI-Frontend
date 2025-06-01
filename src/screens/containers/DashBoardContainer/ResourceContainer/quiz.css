@@ -5,13 +5,13 @@
   overflow-x: hidden;
 }
 .resource-container::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 /* Scrollbar thumb (the draggable part) */
 .resource-container::-webkit-scrollbar-thumb {
   background-color: rebeccapurple;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 /* Scrollbar thumb on hover */
@@ -21,14 +21,16 @@
 
 /* Scrollbar track (the background area) */
 .resource-container::-webkit-scrollbar-track {
-  /* background: #f0f0f0; */
+  /* background: #f0f0f0;
+  background-color: red; */
+  margin: 10px!important;
   border-radius: 10px;
 }
 
 .resources {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 20px;
   gap: 10px; /* Optional: space between items */
   white-space: nowrap; /* Prevents line breaks */
 }
@@ -79,6 +81,7 @@
   width: 85% !important;
   height: auto;
   position: relative;
+  background-color: transparent;
  
 }
 .quiz-view-container{
@@ -236,4 +239,18 @@
 .input-box{
   border: 2px solid rebeccapurple;
   border-radius: 10px;
+}
+.radio-input{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  color: white;
+  border: 1px solid rebeccapurple;
+  border-radius: 5px;
+  margin-left: 15px;
+  background-color: rebeccapurple;
+  /* font-size: 25px; */
 }

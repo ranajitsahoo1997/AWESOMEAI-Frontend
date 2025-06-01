@@ -7,6 +7,9 @@ import DragAndDrop from "../mentorUtils/dropbox/Dropbox";
 function CreateResource() {
   const [title, SetTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [level, setLevel] = useState("");
+  const [marks, setMark] = useState(0);
+  const [topic, setTopic] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -15,7 +18,7 @@ function CreateResource() {
   const handleFileUpload = (file) => {
     console.log("Received in parent:", file);
     // setUploadedFile(file);
-    setFile(file)
+    setFile(file);
   };
   const handleFileChange = (e) => {
     const files = e.target.files[0]; // Get the first selected file
@@ -73,12 +76,18 @@ function CreateResource() {
                                 $title: String!
                                 $desc: String!
                                 $file: Upload!
+                                $level: String!
+                                $marks: Int!
+                                $topic: String!
                                 $id: ID!
                             ) {
                                 createResource(
                                 name: $title
                                 description: $desc
                                 sourceFile: $file
+                                level: $level
+                                marks: $marks
+                                topic: $topic
                                 id: $id
                                 ) {
                                 success
@@ -102,6 +111,9 @@ function CreateResource() {
         title,
         desc,
         file,
+        level,
+        marks,
+        topic,
         id,
       });
 
@@ -110,7 +122,10 @@ function CreateResource() {
         console.log("entered", response.data.createResource.resource);
         navigate("/mentor-dashboard");
       } else {
-        console.log("entered", response.data.createResource.resource.sourceFile);
+        console.log(
+          "entered",
+          response.data.createResource.resource.sourceFile
+        );
       }
     } catch (error) {
       setError("Quiz creation Failed!! try again");
@@ -124,7 +139,6 @@ function CreateResource() {
     <div className="quiz-container">
       <Navbar />
       <div className="login-container1 ">
-        
         {error && <p>Error: {error}</p>}
         <div className="resource-form">
           <h1 className="resource-text">Create Resource</h1>
@@ -142,12 +156,81 @@ function CreateResource() {
               />
             </div>
             <div className="row">
+              <div className="col-md-6">
+                <label>Difficulty Level</label>
+
+                <div className="row ">
+                  <div className="col-md-3 radio-input">
+                    <input
+                      type="radio"
+                      className=" "
+                      name="level"
+                      placeholder="Enter Level (e.g Easy|Medium|Hard)"
+                      onChange={(e) => setLevel(e.target.value)}
+                      value={"Easy"}
+                      required
+                    />
+                    <label className="ml-3">Easy</label>
+                  </div>
+                  <div className="col-md-3 radio-input">
+                    <input
+                      type="radio"
+                      className=""
+                      name="level"
+                      placeholder="Enter Level (e.g Easy|Medium|Hard)"
+                      onChange={(e) => setLevel(e.target.value)}
+                      value={"Medium"}
+                      required
+                    />
+                    <label className="ml-3">Medium</label>
+                  </div>
+                  <div className="col-md-3 radio-input">
+                    <input
+                      type="radio"
+                      className=" "
+                      name="level"
+                      placeholder="Enter Level (e.g Easy|Medium|Hard)"
+                      onChange={(e) => setLevel(e.target.value)}
+                      value={"Hard"}
+                      required
+                    />
+                    <label className="ml-3">Hard</label>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <label>Marks</label>
+
+                <input
+                  type="number"
+                  className="input-box"
+                  placeholder="Enter Marks 5|10|12"
+                  onChange={(e) => setMark(e.target.value)}
+                  value={marks}
+                  required
+                />
+              </div>
+            </div>
+            <div className="">
+              <label>Topic</label>
+
+              <input
+                type="text"
+                className="input-box"
+                placeholder="Enter Topic Name"
+                onChange={(e) => setTopic(e.target.value)}
+                value={topic}
+                required
+              />
+            </div>
+
+            <div className="row">
               <label>Description</label>
 
               <textarea
                 type="text"
                 className="input-box"
-                style={{width: "98%",marginLeft:"10px",height: "150px"}}
+                style={{ width: "98%", marginLeft: "10px", height: "150px" }}
                 rows={3}
                 placeholder="Enter description"
                 onChange={(e) => setDesc(e.target.value)}
@@ -155,14 +238,14 @@ function CreateResource() {
                 required
               />
             </div>
-            <DragAndDrop onFileUpload={handleFileUpload} required/>
+            <DragAndDrop onFileUpload={handleFileUpload} required />
             {/* <input type="file" onChange={handleFileChange} readOnly /> */}
             <div className="btn-container">
               <button type="submit" className="resource-btn text-center">
-              Create
-            </button>
+                Create
+              </button>
             </div>
-            
+
             {/* <button type="reset" className="btn btn-info text-center">Reset</button> */}
           </form>
         </div>

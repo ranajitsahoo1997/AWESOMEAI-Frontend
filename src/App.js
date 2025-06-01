@@ -16,7 +16,9 @@ import UpdateQuiz from "./screens/containers/DashBoardContainer/ResourceContaine
 import UpdateResource from "./screens/containers/DashBoardContainer/ResourceContainer/UpdateResource";
 import CreateResource from "./screens/containers/DashBoardContainer/ResourceContainer/CreateResource";
 import MyResourceView from "./screens/containers/MyResourceContainer/MyResourceView";
-
+import MyQuestionView from "./screens/containers/MyQuestionController/MyQuestionView";
+import SudentWorkBenchView from "./screens/containers/DashBoardContainer/SudentWorkBenchView";
+import GeneratedAnswerView from "./screens/containers/DashBoardContainer/GeneratedAnswerView";
 
 function App() {
   const [showSplash, setShowSplash] = useState(false);
@@ -26,7 +28,7 @@ function App() {
 
     if (!hasSeenSplash) {
       setShowSplash(true);
-      localStorage.setItem("hasSeenSplash", "true");
+      localStorage.setItem("hasSeenSplash", true);
       setTimeout(() => {
         setShowSplash(false);
         setCheckingFirstVisit(false);
@@ -41,76 +43,86 @@ function App() {
   }
 
   return (
-    <Router>
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <LoginHome>
-              <Login />
-            </LoginHome>
-          }
-        />
-        <Route
-          exact
-          path="/register-user"
-          element={
-            <LoginHome>
-              <Register />
-            </LoginHome>
-          }
-        />
-        <Route
-          exact
-          path="/forgot-password"
-          element={
-            <LoginHome>
-              <ForgotPassword />
-            </LoginHome>
-          }
-        />
-        <Route
-          exact
-          path="/reset-password"
-          element={
-            <LoginHome>
-              <ResetPassword />
-            </LoginHome>
-          }
-        />
-        <Route
-          exact
-          path="/activate-user"
-          element={
-            <LoginHome>
-              <VerifyAccount />
-            </LoginHome>
-          }
-        />
+    <>
+      
+      <Router>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <LoginHome>
+                <Login />
+              </LoginHome>
+            }
+          />
+          <Route
+            exact
+            path="/register-user"
+            element={
+              <LoginHome>
+                <Register />
+              </LoginHome>
+            }
+          />
+          <Route
+            exact
+            path="/forgot-password"
+            element={
+              <LoginHome>
+                <ForgotPassword />
+              </LoginHome>
+            }
+          />
+          <Route
+            exact
+            path="/reset-password"
+            element={
+              <LoginHome>
+                <ResetPassword />
+              </LoginHome>
+            }
+          />
+          <Route
+            exact
+            path="/activate-user"
+            element={
+              <LoginHome>
+                <VerifyAccount />
+              </LoginHome>
+            }
+          />
 
-        <Route exact path="/student-dashboard" element={<StudentDashboard />} />
-        <Route exact path="/mentor-dashboard" element={<MentorDashboard />} >
-        
-        </Route>
-        <Route path="/update-resource/:id" element={<UpdateResource />} />
-        <Route
-          exact
-          path="/create-resource"
-          element={<CreateResource />}
-        />
-        
+          <Route
+            exact
+            path="/student-dashboard"
+            element={<StudentDashboard />}
+          />
+          <Route
+            exact
+            path="/mentor-dashboard"
+            element={<MentorDashboard />}
+          ></Route>
+          <Route path="/update-resource/:id" element={<UpdateResource />} />
+          <Route exact path="/create-resource" element={<CreateResource />} />
 
-        <Route
-          exact
-          path="/create-question"
-          element={<CreateQuestion />}
-        />
+          <Route exact path="/create-question" element={<CreateQuestion />} />
 
-        <Route exact path="/questions" element={<QuestionsView />} />
-        <Route exact path="/resourceView" element={<MyResourceView/>}/>
-      </Routes>
-    </Router>
+          <Route exact path="/questions" element={<QuestionsView />} />
+          <Route exact path="/resourceView" element={<MyResourceView />} />
+          <Route exact path="/myQuestionView" element={<MyQuestionView />} />
+          <Route
+            exact
+            path="/studentWorkBenchView/"
+            element={<SudentWorkBenchView />}
+          />
+          <Route
+            path="/studentWorkBenchView/generatedAnswerView"
+            element={<GeneratedAnswerView />}
+          />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

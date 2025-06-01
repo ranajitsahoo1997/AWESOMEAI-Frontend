@@ -4,6 +4,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
 }
 .question-container{
     width: 100%;
@@ -39,4 +40,71 @@
     font-weight: bold;
     font-style: italic;
   }
-  
+  .sq-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    height: 82vh;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  .question-list-container{
+    width: 50%;
+    height: 97%;
+    padding: 10px;
+    background-color: #f0f0f0;
+  }
+  .questions-list{
+    height: 98%;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  .question-container{
+    background-color: white;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px thistle;
+  }
+  .student-list-container{
+    width: 50%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    background-color: #f0f0f0;
+  }
+  .student-item{
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    text-decoration: dashed;
+    color: rebeccapurple;
+    font-weight: bold;
+  }
+  .student-item:hover{
+    background-color: #e0e0e0;
+  }
+  .questionHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+  }
+  .back-btn{
+    width: 10%;
+    font-weight: bold;
+    font-size: 17px;
+    color: rebeccapurple;
+    cursor: pointer;
+  }
+  .question-detals-text{
+    text-align: center;
+    width: 90%;
+    font-weight: bold;
+    font-size: 30px;
+    color: rebeccapurple;
+  }

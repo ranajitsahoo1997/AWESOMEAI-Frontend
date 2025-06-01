@@ -143,3 +143,44 @@
   border-radius: 8px;
    padding: 10px;
 }
+.mentor-ans-view{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.ma-container{
+  margin-top: 20vh;
+  width: 80%;
+  height: 90vh;
+}
+.my-questions-list{
+  background-color: thistle;
+  height: 90vh;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.answer-container{
+  height: 98vh;
+  padding: 10px;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 10px;
+}
+.answer-text{
+  width: 100%!important;
+  height: 80vh!important;
+  background-color: wheat;
+  border: 1.5px solid;
+  border-radius: 7px;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 10px;
+}
+.ans-btn-time{
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

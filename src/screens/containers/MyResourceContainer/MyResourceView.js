@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Client } from "../../../Client/GraphQLClient";
 import "../DashBoardContainer/StudentDashboard.css";
 import PdfViewer from "../DashBoardContainer/ResourceContainer/PdfViewer";
@@ -9,9 +9,56 @@ function MyResourceView() {
   const resId = searchParams.get("resId");
   const [resource, setResource] = useState(null);
   const [quests, setQuests] = useState([]);
+  const [showQuestion, setShowQuestion] = useState(true);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(resId);
+  const navigate= useNavigate()
+
+  const handleAttendClick = async (e,questionId) => {
+    console.log(questionId,currentUser.id)
+    const CREATE_MY_QUESTIONS_MUTATIONS = `
+        mutation CreateMyQuestion($questionId: Int!,$studentId: ID!)
+        {
+          createMyQuestions(questionId:$questionId,studentId:$studentId)
+          {
+            success
+            errors
+            myQuestion{
+              id
+              questionText
+              status
+              marks
+              startedAt
+              isOpen
+              question{
+                id
+              }
+              student{
+                id
+              }
+              
+            }
+          }
+        }
+      `;
+
+      try {
+        const studentId = currentUser?.id
+        const {data} = await Client(CREATE_MY_QUESTIONS_MUTATIONS,{questionId,studentId})
+        console.log(data);
+        if (data?.createMyQuestions.success) {
+          const myQuestion = data?.createMyQuestions.myQuestion
+          navigate("/myQuestionView",{state:{myQuestion: myQuestion}})
+        }
+        
+      } catch (error) {
+        console.log(error);
+        
+      }
+  };
 
   const handleResourceClickForAssign = async () => {
+    setShowQuestion(false);
     const FETCH_QUESTIONS_FOR_RESOURCE = `
         query FetchQuestionForResId($resId: ID!)
         {
@@ -68,14 +115,16 @@ function MyResourceView() {
                 <div className=" res-text">
                   <div className="res-headerpart">
                     <div>
-                      Resource: <span>{resource?.name} </span>
+                      Resource:{" "}
+                      <span style={{ color: "black" }}>{resource?.name} </span>
                     </div>
                     <div>
                       <button
-                        className="subscribe-btn"
+                        className={`showQuestion-btn`}
+                        style={{ display: showQuestion ? "block" : "none" }}
                         onClick={handleResourceClickForAssign}
                       >
-                        Self-Asign Resource
+                        Show Questions
                       </button>
                     </div>
                   </div>
@@ -98,28 +147,40 @@ function MyResourceView() {
               </div>
             </div>
           </div>
-          <div className="col-sm-6 resource-view">
+          <div className="col-sm-6 quest-view">
             <div className="quest-view-container">
-                {console.log(quests)
-                }
+              {console.log(quests)}
               {quests.length > 0 ? (
-                quests?.map((quest)=>(
-                    <div className="question-view">{quest.question}</div>
+                quests?.map((quest) => (
+                  <div className="question-view">
+                    <div className="question-text">{quest.question}</div>
+                    <div>
+                      <button
+                        className="attend-btn"
+                        onClick={(e)=>handleAttendClick(e,quest.id)}
+                      >
+                        Attend
+                      </button>
+                    </div>
+                  </div>
                 ))
               ) : (
                 <div className="nothing-box">
-                  
-                  <div>Mentor hasn't generated Questiosn for this <b>
-                    Resource 
-                  </b>.
-                  <br />
-                  or
-                  <br />
-                  There is no Questions created for this <b>Resource</b>
-                  <br />
-                  or
-                  <br/>
-                  To show All Question please click on the <b><i>"Self-Assign Resource"</i></b> <b>button</b></div>
+                  <div>
+                    Mentor hasn't generated Questiosn for this <b>Resource</b>.
+                    <br />
+                    or
+                    <br />
+                    There is no Questions created for this <b>Resource</b>
+                    <br />
+                    or
+                    <br />
+                    To show All Question please click on the{" "}
+                    <b>
+                      <i>"Show Questions"</i>
+                    </b>{" "}
+                    <b>button</b>
+                  </div>
                 </div>
               )}
             </div>

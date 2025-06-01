@@ -15,7 +15,7 @@ function QuizItem({ quiz, onQuiz,onResourceIcon }) {
           
           
           <div className="col-md-10" onClick={() => handleClick(quiz?.id)}>{quiz?.name}</div>
-          <div className="col-md-2 "  onClick={() => handleIconClick(quiz?.id)} > <FaTableList/></div>
+          {/* <div className="col-md-2 "  onClick={() => handleIconClick(quiz?.id)} > <FaTableList/></div> */}
         </div>
       
     </div>

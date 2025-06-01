@@ -28,12 +28,18 @@ function highlightText(text, highlight) {
   );
 }
 
-function QuizView({ quiz, refetchQuizzes, top, searchText }) {
+function QuizView({
+  quiz,
+  refetchQuizzes,
+  top,
+  searchText,
+  handleResourceIcon,
+}) {
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
- 
+
   const navigate = useNavigate();
 
   console.log(quiz);
@@ -72,7 +78,7 @@ function QuizView({ quiz, refetchQuizzes, top, searchText }) {
         await refetchQuizzes();
         handleClose();
         setShow(false);
-        
+
         navigate("/mentor-dashboard");
       }
     } catch (error) {
@@ -80,19 +86,26 @@ function QuizView({ quiz, refetchQuizzes, top, searchText }) {
       setError("Error in deleting");
     }
   };
- 
 
-  
+  const handleShowQuestions = (resId) => {
+    handleResourceIcon(resId);
+  };
 
   return (
     <>
       {quiz ? (
         <div className="quiz-view-container">
-          
           <div className="row ">
             <div className="col-md-7 ">
-              <div className="quiz_name">
-                {highlightText(quiz?.name, searchText)}
+              <div className="row">
+                <div className="col-md-6 quiz_name ">
+                  {highlightText(quiz?.name, searchText)}
+                </div>
+                <div className="col-md-5 text-end pt-2">
+                  <button className="gen-btn" onClick={(e) => handleShowQuestions(quiz?.id)}>
+                    Show Questions
+                  </button>
+                </div>
               </div>
             </div>
 

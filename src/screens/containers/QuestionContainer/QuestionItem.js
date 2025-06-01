@@ -1,7 +1,7 @@
 import React from 'react'
 
 function QuestionItem({question,index}) {
-    console.log(question);
+    
     
   return (
     <div className='container'>
@@ -22,7 +22,7 @@ function QuestionItem({question,index}) {
                 </div>
             </div>
         </div>
-        <hr/>
+        
     </div>
   )
 }
